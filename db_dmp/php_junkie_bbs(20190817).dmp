@@ -35,7 +35,7 @@ CREATE TABLE `posted` (
   `image_pass` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `status` int(1) NOT NULL,
   PRIMARY KEY (`no`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -44,6 +44,7 @@ CREATE TABLE `posted` (
 
 LOCK TABLES `posted` WRITE;
 /*!40000 ALTER TABLE `posted` DISABLE KEYS */;
+INSERT INTO `posted` VALUES (1,1,'てて','e@a','2019-08-13 13:42:31','2019-08-13 13:42:31','名無しテスト','1111111111111111111111111111111111111111111111111111111',1,'image/zoom_st0813.JPG',0),(2,2,'aa','e@a','2019-08-13 13:44:04','2019-08-13 13:44:04','d','aa',1,'image/クイズ.gif',0),(3,2,'aa','e@a','2019-08-13 14:19:12','2019-08-13 14:19:12','aa','aaa',0,NULL,0),(4,1,'ラーメン店の検討','e@a','2019-08-13 14:20:10','2019-08-13 14:20:10','a','どこにする？',0,NULL,1);
 /*!40000 ALTER TABLE `posted` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -56,9 +57,13 @@ DROP TABLE IF EXISTS `user`;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `user` (
   `no` int(255) NOT NULL AUTO_INCREMENT,
-  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
   `password` varchar(255) NOT NULL,
   `status` int(1) NOT NULL,
+  `plan` int(11) DEFAULT NULL,
+  `subscription_id` text,
+  `start_date` text,
+  `update_date` text,
   PRIMARY KEY (`no`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -81,4 +86,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-08-12  0:50:17
+-- Dump completed on 2019-08-17 16:52:22
