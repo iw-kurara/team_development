@@ -47,7 +47,7 @@
 <html lang="ja">
 <head>
     <meta charset="utf-8">
-    <title>購入画面</title>
+    <title>架空サービス(購入画面)</title>
     <style type="text/css">
     .stripe-button-el {
       width: 100px;

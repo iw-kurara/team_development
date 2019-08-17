@@ -37,7 +37,7 @@ $dbname   = $DB_acces['dbname'];
                 $password_check = true;
                 session_start();
                 $_SESSION['user_id'] = $input_id;
-                header('Location: /team_development/thread_list.php');
+                header('Location: /team_development/fiction_service.php');
             }else{
                 $password_check = false;
             }

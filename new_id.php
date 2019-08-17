@@ -1,6 +1,6 @@
 <?php require(dirname(__FILE__) ."/temp/header.html"); ?>
 
-    <div class="title">連絡掲示板(id登録）</div>
+    <div class="title">架空サービス(id登録）</div>
 
     <form action="/team_development/add_id.php" method="post">
         <ul>

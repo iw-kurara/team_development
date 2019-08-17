@@ -1,6 +1,6 @@
 <?php require(dirname(__FILE__) ."/temp/header.html"); ?>
 
-    <div class="title">連絡掲示板(id登録処理）</div>
+    <div class="title">架空サービス(id登録処理）</div>
 <?php
     $host     = $DB_acces['host'];
     $username = $DB_acces['username'];

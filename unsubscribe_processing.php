@@ -1,6 +1,6 @@
 <?php require(dirname(__FILE__) ."/temp/header.html"); ?>
 
-    <div class="title">連絡掲示板(退会処理）</div>
+    <div class="title">架空サービス(退会処理）</div>
 <?php
     // セッション開始
     session_start();

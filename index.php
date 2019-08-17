@@ -1,11 +1,11 @@
 <?php require(dirname(__FILE__) ."/temp/header.html"); ?>
 
-    <div class="title">連絡掲示板</div>
+    <div class="title">架空サービス</div>
     <?php
         // セッション開始
         @session_start();
         if (isset($_SESSION['user_id'])) {
-            header('Location: thread_list.php');
+            header('Location: fiction_service.php');
         }elseif (!isset($_SESSION['user_id'])) {
         }
     ?>
