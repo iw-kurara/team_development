@@ -68,7 +68,13 @@
         case true:
           echo '<div class="comment">登録が完了しました。ログイン画面に戻ってログインして下さい。</div>';
              session_start();
-            $_SESSION['user_id'] = 14;
+
+           if ($add_type == "insert") :
+                $_SESSION['user_id'] = $user_add_sql->insert_id;
+            elseif ($add_type == "update") :
+                $_SESSION['user_id'] = $user_select2_all[0]["no"];
+            endif;
+
             header('Location: stripe_Source\subscription.php');
           break;
       case false:

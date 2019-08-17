@@ -4,7 +4,7 @@
   require_once('./../base.php');
   date_default_timezone_set('Asia/Tokyo');
   // APIのシークレットキー
-  \Stripe\Stripe::setApiKey('sk_test_gIqVgfVFoQ0UtljO7IdQzZLw00QkM8FWWj');
+  \Stripe\Stripe::setApiKey('sk_test_XHQKc0xoARcHOSbcqnpUkvYG00CRKlTWXQ');
 
   // 退会処理
   if(isset($_POST['cancel'])) {
@@ -88,8 +88,8 @@
 
     // サブスクリプションの作成
     $subscription = \Stripe\Subscription::create([
-    	'customer' => $customer['id'],
-    	'items' => [
+      'customer' => $customer['id'],
+      'items' => [
           ['plan' => $plan['id']],
         ],
     ]);
