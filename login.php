@@ -31,21 +31,6 @@
            $email_check = false;
        }
 
-       //入力されたe-mailアドレスが登録済みand有効かチェック
-       $link->set_charset('utf8');
-       $user_select_sql = $link->prepare( "SELECT * FROM user where email = ? AND status = 1");
-       $input_id = $_POST['id'];
-       $user_select_sql->bind_param("s",$input_id);
-       $user_select_sql->execute();
-       $result = $user_select_sql->get_result();
-       $user_select_all = $result->fetch_all(MYSQLI_ASSOC);
-
-       if(count($user_select_all)>=1){
-           $email_check = true;
-       }else{
-           $email_check = false;
-       }
-
        //自動課金機能機能の期限をチェック
        if(count($user_select_all)>=1 and $email_check = true){
           $today = strtotime(date('Y-m-d'));

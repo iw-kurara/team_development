@@ -3,15 +3,7 @@
   session_start();
   date_default_timezone_set('Asia/Tokyo');
   require_once('./../base.php');
-  // echo date('Y-m-d H:i:s', 1565848975);
-  // echo '<br>';
-  // echo date('Y-m-d H:i:s', 1565848974);
-  // echo '<br>';
 
-  // ログインしてなかったらログインページへ
-  //$_SESSION['user_id'] = 1;       // TODO フォームでください
-
-  // var_dump($_SESSION);
   if(!isset($_SESSION['user_id'])) {
     header('Location: ./../index.php');
   }
@@ -49,7 +41,7 @@
 <html lang="ja">
 <head>
     <meta charset="utf-8">
-    <title>架空サービス(購入画面)</title>
+    <title>架空サービス(退会処理)</title>
     <style type="text/css">
     .stripe-button-el {
       width: 100px;
@@ -73,45 +65,6 @@
 
 <body>
     <div class="comment">退会ボタンをクリックで自動請求システムも退会します。いままでご利用ありがとうございました。</div>
-<!--     <form action="./charge.php" method="POST">
-        <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-          data-key="pk_test_ntgLW1eDYDMF9IDF0r2kwPZw00LY2llnqx"
-          data-amount="1000"
-          data-email="<?=$email?>"
-          data-name="むちょこチーム開発テスト"
-          data-locale="auto"
-          data-allow-remember-me="false"
-          data-label="¥PLAN A ¥1,000/月 Get Started"
-          data-currency="jpy">
-        </script>
-        <input type="hidden" name="price" value="1000">
-    </form>
-    <form action="./charge.php" method="POST">
-      <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-        data-key="pk_test_ntgLW1eDYDMF9IDF0r2kwPZw00LY2llnqx"
-        data-amount="3000"
-        data-email="<?=$email?>"
-        data-name="むちょこチーム開発テスト"
-        data-locale="auto"
-        data-allow-remember-me="false"
-        data-label="¥PLAN B ¥3,000/月 Get Started"
-        data-currency="jpy">
-      </script>
-      <input type="hidden" name="price" value="3000">
-    </form>
-    <form action="./charge.php" method="POST">
-      <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-        data-key="pk_test_ntgLW1eDYDMF9IDF0r2kwPZw00LY2llnqx"
-        data-amount="5000"
-        data-email="<?=$email?>"
-        data-name="むちょこチーム開発テスト"
-        data-locale="auto"
-        data-allow-remember-me="false"
-        data-label="¥PLAN C ¥5,000/月 Get Started"
-        data-currency="jpy">
-      </script>
-      <input type="hidden" name="price" value="5000">
-    </form> -->
     <form action="./charge.php" method="POST">
       <button type="submit" name="cancel" value="退会" class="stripe-button-el"><span style="display:block; min-height:30px;">退会</span></button>
     </form>
