@@ -37,13 +37,10 @@
              if($user_select_all[0]['plan'] != 1){?>
             <div class="user_plan">
                 加入中プラン：
-                <?php if($user_select_all[0]['plan'] == 1000){
-                         echo "￥1,000/月(プランA)";
-                      }elseif($user_select_all[0]['plan'] == 3000){
-                         echo "￥3,000/月(プランB)";
-                      }elseif($user_select_all[0]['plan'] == 5000){
-                         echo "￥5,000/月(プランC)";
-                      }//if($user_select_all[0]['plan'] == 1000) ?>
+                <?php
+                 if(isset($user_select_all[0]['plan'])){
+                        echo '¥'.$user_select_all[0]['plan'].'円/月';
+                } ?>
             </div>
             <?php }?>
 
@@ -60,7 +57,13 @@
             <div class="session_logout">
                 <a href="logout.php">ログアウト</a>
             </div>
-            
+
+            <div class="session_footer">
+                <div class="subscribe">
+                    <a href="stripe_Source\subscription.php">プラン変更する場合はこちら</a>
+                </div>
+            </div>
+
             <div class="session_footer">
                 <div class="unsubscribe">
                     <a href="unsubscribe.php">退会する場合はこちら</a>
