@@ -18,18 +18,23 @@
         $link = new mysqli($host , $username, $passwd, $dbname);
 
         $link->set_charset('utf8');
-        $user_select_sql = $link->prepare( "SELECT * FROM user where email = ?");
+        $user_select_sql = $link->prepare( "SELECT * FROM user where no = ?");
         $user_select_sql->bind_param("s",$_SESSION['user_id']);
         $user_select_sql->execute();
         $result = $user_select_sql->get_result();
         $user_select_all = $result->fetch_all(MYSQLI_ASSOC);
+
+        $email = $_SESSION['email'];
     ?>
 
     <?php if (isset($_SESSION['user_id'])) {?>
         <div class="session">
             <div class="session_id">
-                ログインid:<?php echo $_SESSION['user_id'];?>
+                ログインid:<?=$email?>
             </div>
+            <?php
+              //一般ユーザーの場合、加入中プランを表示
+             if($user_select_all[0]['plan'] != 1){?>
             <div class="user_plan">
                 加入中プラン：
                 <?php if($user_select_all[0]['plan'] == 1000){
@@ -40,8 +45,12 @@
                          echo "￥5,000/月(プランC)";
                       }//if($user_select_all[0]['plan'] == 1000) ?>
             </div>
+            <?php }?>
 
-            <?php if($user_select_all[0]['plan'] == "Admin"){?>
+            <?php 
+              //管理者ユーザーの場合、管理機能画面へのリンクを表示
+              if($user_select_all[0]['plan'] == 1){
+            ?>
             <div class="user_type">
                  <a href="user_info.php"><-管理機能画面-></a>
             </div>

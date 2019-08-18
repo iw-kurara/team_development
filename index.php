@@ -1,6 +1,6 @@
 <?php require(dirname(__FILE__) ."/temp/header.html"); ?>
 
-    <div class="title">架空サービス</div>
+    <div class="title">架空サービス(ログイン)</div>
     <?php
         // セッション開始
         @session_start();
@@ -20,5 +20,5 @@
             <li><a href="/team_development/new_id.php">Id(e-mail)、パスワードの登録がまだの方はこちら</a></li>
         </ul>
     </form>
-    
+   
 <?php require(dirname(__FILE__) ."/temp/footer.html"); ?>

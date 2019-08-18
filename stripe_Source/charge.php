@@ -13,20 +13,23 @@
       try {
         $subscription = \Stripe\Subscription::retrieve($subscription_id);
         $subscription->cancel();
+
       } catch(Exception $e) {
         // エラーの表示
         echo "ERORR:" . $e->getMessage();
         exit;
       }
       unsubscribeUser($DB_acces, $_SESSION['user_id']);
+      $_SESSION = array();
+      session_destroy();
     }
-    header('Location: ./../login.php');
+    header('Location: ./../index.php');
     exit();
   }
 
   // priceが送信されてなければログイン画面に戻す TODO ログアウトも一緒にしたほうがいい
   if(!isset($_POST['price'])) {
-    header('Location: /../login.php');
+    header('Location: /../index.php');
   }
 
   $charge_id = null;
@@ -38,7 +41,7 @@
   $price = htmlspecialchars($_POST['price'], ENT_QUOTES, 'UTF-8');
   // 無効な値が送られてきているためログイン画面に戻す　TODO ログアウトも一緒にしたほうがいい
   if(!array_key_exists($price, $amount)) {
-    header('Location: /../login.php');
+    header('Location: /../index.php');
   }
 
   $token  = $_POST['stripeToken'];

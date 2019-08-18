@@ -18,18 +18,11 @@
     } else {
         $link->set_charset("utf8");
 
-    $user_del_sql = $link->prepare( "UPDATE `user` SET status= 0 WHERE email = ? ");
+    $user_del_sql = $link->prepare( "UPDATE `user` SET status= 0 WHERE no = ? ");
     $user_del_sql->bind_param("s",$_POST['id']);
       switch ($user_del_sql->execute()) {
         case true:
-          // セッション変数を全て削除
-          //$_SESSION = array();
-
-          // セッションの登録データを削除
-          //session_destroy();
-
-          echo '<div class="comment">退会処理が完了しました。いままでご利用まことにありがとうございました。</div>';
-            header('Location: stripe_Source\subscription.php');
+            header('Location: stripe_Source\unsubscribe_processing_stripe.php');
           break;
       case false:
           echo '<div class="comment">退会処理に失敗しました。管理者に連絡して下さい。</div>';

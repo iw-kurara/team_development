@@ -16,6 +16,7 @@ textarea {resize: none;}
 .posted-conf-container{width: 50%;border: solid 1px;margin: 0 auto;}
 .comment{text-align: center}
 .comment_attention{}
+.contents{text-align: center}
 .paging{margin-bottom: 2%;margin-top: 0%;width: 100%;overflow: hidden;}
 .paging .pager-next a{float: right;margin-right: 15%;color: #dc3545;font-weight: bold;}
 .paging .pager-back a{float: left;margin-left: 15%;color: #dc3545;font-weight: bold;}

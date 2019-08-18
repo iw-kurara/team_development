@@ -7,7 +7,7 @@
     $passwd   = $DB_acces['passwd'];
     $dbname   = $DB_acces['dbname'];
     // 接続
-    $link = new mysqli($host , $username, $passwd, $dbname);
+       $link = new mysqli($host , $username, $passwd, $dbname);
 
     if ($link->connect_error) {
         echo $link->connect_error;
@@ -37,15 +37,25 @@
             $user_select2_sql->execute();
             $result = $user_select2_sql->get_result();
             $user_select2_all = $result->fetch_all(MYSQLI_ASSOC);
-        
+
                 if (count($user_select2_all)==1) :
-                    //登録済みで無効の場合　
+                    //登録済みで無効の場合
                     $email_check = true;
                     $add_type    = "update";
+                    $expiration_date = "etc";
                 else :
-                    //登録済みで有効の場合　
-                    $email_check = false;
-                    $add_type    = false;
+                    //登録済みで有効の場合、更新日をチェック
+                      $today = strtotime(date('Y-m-d'));
+                      $update_date = strtotime($user_select_all[0]['update_date']);
+
+                      if($today<=$update_date):
+                                $email_check = false;
+                                $add_type    = false;
+                      else :
+                                $email_check = true;
+                                $add_type    = "update";
+                                $expiration_date = false;
+                      endif;
                 endif;
             }
     }
@@ -66,15 +76,17 @@
 
       switch ($user_add_sql->execute()) {
         case true:
-          echo '<div class="comment">登録が完了しました。ログイン画面に戻ってログインして下さい。</div>';
              session_start();
-
            if ($add_type == "insert") :
                 $_SESSION['user_id'] = $user_add_sql->insert_id;
-            elseif ($add_type == "update") :
+                $_SESSION['email'] = $_POST['id'];
+            elseif ($add_type == "update" and  $expiration_date == false) :
+                $_SESSION['user_id'] = $user_select_all[0]["no"];
+                $_SESSION['email'] = $_POST['id'];
+            elseif ($add_type == "update" and  $expiration_date == "etc") :
                 $_SESSION['user_id'] = $user_select2_all[0]["no"];
+                $_SESSION['email'] = $_POST['id'];
             endif;
-
             header('Location: stripe_Source\subscription.php');
           break;
       case false:

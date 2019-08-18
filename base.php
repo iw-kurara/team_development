@@ -21,4 +21,6 @@ function page_no_calculation($next_no,$output_count,$pagetype){
     return $result;
   }
 }
+
+
 ?>

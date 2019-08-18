@@ -12,7 +12,7 @@
 
   // var_dump($_SESSION);
   if(!isset($_SESSION['user_id'])) {
-    header('Location: ./../login.php');
+    header('Location: ./../index.php');
   }
   // user_id(userテーブルのno)からemail(メールアドレス)を取得する
   $host     = $DB_acces['host'];
@@ -23,9 +23,10 @@
   $mysqli = new mysqli($host , $username, $passwd, $dbname);
   if($mysqli->connect_error) {
     echo $mysqli->connect_error;
-    echo '<a href="./../login.php">ログイン画面へ</a>';
+    echo '<a href="./../index.php">ログイン画面へ</a>';
     exit();
   }
+
   $mysqli->set_charset("utf8");
   $sql = "SELECT email FROM user WHERE no = ?";
   $email = "";
@@ -39,7 +40,7 @@
     $stmt->close();
   } else {
     // クエリに失敗した場合はログイン画面に戻す
-    header('Location: ./../login.php');
+    header('Location: ./../index.php');
   }
   $mysqli->close();
  ?>
@@ -109,9 +110,9 @@
       </script>
       <input type="hidden" name="price" value="5000">
     </form>
-    <form action="./charge.php" method="POST">
+<!--     <form action="./charge.php" method="POST">
       <button type="submit" name="cancel" value="退会" class="stripe-button-el"><span style="display:block; min-height:30px;">退会</span></button>
-    </form>
+    </form> -->
     <p>メールアドレス：<?=$email?></p>
     <p>カード番号：4242 4242 4242 4242</p>
 </body>
