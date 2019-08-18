@@ -17,7 +17,7 @@
             <BR>
             <li><input type="submit" value="送信"><input type="reset" value="リセット"></li>
             <BR>
-            <li><a href="/team_development/new_id.php">Id(e-mail)、パスワードの登録がまだの方はこちら</a></li>
+            <li><a href="new_id.php">Id(e-mail)、パスワードの登録がまだの方はこちら</a></li>
         </ul>
     </form>
    

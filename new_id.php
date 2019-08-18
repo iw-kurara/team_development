@@ -2,7 +2,7 @@
 
     <div class="title">架空サービス(id登録）</div>
 
-    <form action="/team_development/add_id.php" method="post">
+    <form action="add_id.php" method="post">
         <ul>
             <li>登録するId(e-mail)、パスワードを入力して下さい。</li>
             <li><label class="new">Id(e-mail)：</label><input type="email" name="id" size="40"  required></li>

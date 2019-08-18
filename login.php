@@ -65,7 +65,7 @@
                 session_start();
                 $_SESSION['email'] = $user_select_all[0]['email'];
                 $_SESSION['user_id'] = $user_select_all[0]['no'];
-                header('Location: /team_development/fiction_service.php');
+                header('Location: fiction_service.php');
             }else{
                 $password_check = false;
             }
