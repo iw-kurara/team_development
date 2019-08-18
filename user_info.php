@@ -1,4 +1,6 @@
 <?php
+    session_start();
+
     define('DB_DATABASE', 'dbname');
     // define('DB_USERNAME', 'username');
     define('DB_USERNAME', 'root');
