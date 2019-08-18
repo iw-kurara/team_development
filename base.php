@@ -29,6 +29,8 @@ function user_select($link,$type,$para){
          $user_select_sql = $link->prepare( "SELECT * FROM user where email = ? AND status = 1");
   }elseif($type == "rege_mail"){
         $user_select_sql = $link->prepare( "SELECT * FROM user where email = ? ");
+  }elseif($type == "rege_invalid_mail"){
+        $user_select_sql = $link->prepare( "SELECT * FROM user where email = ? AND  status= 0 ");
   }
 
        $input_id = $para;

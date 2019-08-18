@@ -47,7 +47,7 @@
                 $add_type    = "insert";
             }else{
 
-            $link->set_charset('utf8');
+/*            $link->set_charset('utf8');
             $user_select2_sql = $link->prepare( "SELECT * FROM user where email = ? AND  status= 0 ");
             $input_id = $_POST['id'];
             $user_select2_sql->bind_param("s",$input_id);
@@ -55,7 +55,12 @@
             $result = $user_select2_sql->get_result();
             $user_select2_all = $result->fetch_all(MYSQLI_ASSOC);
 
-                if (count($user_select2_all)==1) :
+                if (count($user_select2_all)==1) :*/
+
+            $user_select2_all=user_select( $link,"rege_invalid_mail",$_POST['id']);
+//var_dump($user_select2_all);
+//exit;
+                if ($user_select2_all!="0") :
                     //登録済みで無効の場合
                     $email_check = true;
                     $add_type    = "update";
