@@ -1,21 +1,14 @@
 <?php
     session_start();
 
-    define('DB_DATABASE', 'dbname');
-    // define('DB_USERNAME', 'username');
-    define('DB_USERNAME', 'root');
-    // define('DB_PASSWORD', 'passwd');
-     define('DB_PASSWORD', 'tTme');
+    define('DB_DATABASE', 'php_junkie_bbs');
+    define('DB_USERNAME', 'task_root');
+    define('DB_PASSWORD', 'Geikinotakakunaidesu');
     define('PDO_DSN', 'mysql:dbhost=localhost;dbname=' . DB_DATABASE);
-    // 接続
+
 try {
     $db = new PDO(PDO_DSN, DB_USERNAME, DB_PASSWORD);
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-// var_dump($db);
-    
-//INSERT
-//$db ->exec("insert into user (email,password,plan,status,start_date,update_date) values ('abc@vvv','xxx','3000','1','2019/05/02','2019/06/12')");
-//echo "user added!";
 
   } catch (PDOException $e) {
     echo $e->getMessage();
