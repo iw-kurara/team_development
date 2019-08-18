@@ -13,53 +13,16 @@
         echo $link->connect_error;
         exit();
     } else {
-
-        //入力されたe-mailアドレスが登録済みか、無効になっているかチェック
-/*            $link->set_charset('utf8');
-            $user_select_sql = $link->prepare( "SELECT * FROM user where email = ? ");
-            $input_id = $_POST['id'];
-            $user_select_sql->bind_param("s",$input_id);
-            $user_select_sql->execute();
-            $result = $user_select_sql->get_result();
-            $user_select_all = $result->fetch_all(MYSQLI_ASSOC);
-
-       $user_select_all=user_select( $link,"rege_valid_mail",$_POST['id']);
-
-       if($user_select_all!="0"){
-           $email_check = true;
-       }else{
-           $email_check = false;
-       }
-
-
-            if(count($user_select_all)==0){*/
-
             $user_select_all=user_select( $link,"rege_mail",$_POST['id']);
 
-            var_dump($user_select_all);
-
-           // exit;
-
             if($user_select_all=="0"){
-
-        //未登録の場合
+                   //未登録の場合
                 $email_check = true;
                 $add_type    = "insert";
             }else{
 
-/*            $link->set_charset('utf8');
-            $user_select2_sql = $link->prepare( "SELECT * FROM user where email = ? AND  status= 0 ");
-            $input_id = $_POST['id'];
-            $user_select2_sql->bind_param("s",$input_id);
-            $user_select2_sql->execute();
-            $result = $user_select2_sql->get_result();
-            $user_select2_all = $result->fetch_all(MYSQLI_ASSOC);
+                $user_select2_all=user_select( $link,"rege_invalid_mail",$_POST['id']);
 
-                if (count($user_select2_all)==1) :*/
-
-            $user_select2_all=user_select( $link,"rege_invalid_mail",$_POST['id']);
-//var_dump($user_select2_all);
-//exit;
                 if ($user_select2_all!="0") :
                     //登録済みで無効の場合
                     $email_check = true;
@@ -81,10 +44,8 @@
                 endif;
             }
     }
-?>
 
-<?php if($email_check==true){?>
-<?php
+ if($email_check==true){
     //登録処理実行(事前チェックの結果でupdateかinsertか分岐)
       $password_text = password_hash($_POST['password1'], PASSWORD_DEFAULT);
 
