@@ -81,6 +81,10 @@ $stmt->execute();
       <td><?php echo $row['update_date'] ; ?></td>
     </tr>
     <?php endforeach ; ?>
+         
+    <div class="fiction_service">
+       <a href="fiction_service.php"><-架空サービス-></a>
+    </div>
 
   </table>
    </body>
