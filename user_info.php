@@ -9,12 +9,11 @@
 try {
     $db = new PDO(PDO_DSN, DB_USERNAME, DB_PASSWORD);
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-var_dump($db);
-    //INSERT
-    $db ->exec("insert into user (email,password,plan,status,start_date,update_date) values ('abc@vvv','xxx','3000','1','2019/05/02','2019/06/12')");
-    echo "user added!";
-  // disconnect
-//  $db = null;
+// var_dump($db);
+    
+//INSERT
+//$db ->exec("insert into user (email,password,plan,status,start_date,update_date) values ('abc@vvv','xxx','3000','1','2019/05/02','2019/06/12')");
+//echo "user added!";
 
   } catch (PDOException $e) {
     echo $e->getMessage();
@@ -22,7 +21,12 @@ var_dump($db);
 }
 //接続
 
-// $sql ="SELECT *FROM 'user' WHERE'no' = ? AND CONVERT(AES_DECRYPT(UNHEX('email'),))";
+//SESSONによるアクセス制限
+if(isset($_SESSION['user_id'])){
+}else{
+  header('Location: index.php');
+}
+
 $sql ="SELECT * FROM user";
 $stmt = $db -> prepare($sql);
 $stmt->execute();
@@ -41,7 +45,7 @@ $stmt->execute();
     <tr>
       <th>ID</th>
       <th>メールアドレス</th>
-      <th>プラン</th>
+      <th>契約情報</th>
       <th>ステータス</th>
       <th>作成日時</th>
       <th>更新日時</th>
@@ -58,14 +62,16 @@ $stmt->execute();
           <?php echo "￥3,000/月" ;?>
         <?php }elseif($row['plan'] == 5000) {?>
           <?php echo "￥5,000/月" ;?>
+        <?php }elseif($row['plan'] == 1) {?>
+          <?php echo "管理者" ;?>
         <?php } ?>
       </td><!--if文でプラン条件分岐する-->
       <td>
         <?php if ($row['status'] == 0) { ?>
-          <?php $span = "<span style='color:blue'> ログオフ </span>";
+          <?php $span = "<span style='color:blue'>無効</span>";
           echo $span;?>
         <?php }else{ ?>
-          <?php $span = "<span style='color:red'> ログイン </span>";
+          <?php $span = "<span style='color:red'>有効</span>";
           echo $span;?>
         <?php } ?>
       </td>
