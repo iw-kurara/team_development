@@ -22,5 +22,25 @@ function page_no_calculation($next_no,$output_count,$pagetype){
   }
 }
 
+function user_select($link,$type,$para){
+  $link->set_charset('utf8');
+
+  if($type == "rege_valid_mail"){
+         $user_select_sql = $link->prepare( "SELECT * FROM user where email = ? AND status = 1");
+  }elseif($type == "rege_mail"){
+        $user_select_sql = $link->prepare( "SELECT * FROM user where email = ? ");
+  }
+
+       $input_id = $para;
+       $user_select_sql->bind_param("s",$input_id);
+       $user_select_sql->execute();
+       $result = $user_select_sql->get_result();
+       $user_select_all = $result->fetch_all(MYSQLI_ASSOC);
+  if(count($user_select_all)>=1){
+    return $user_select_all;
+  }else{
+    return "0";
+  }
+}
 
 ?>

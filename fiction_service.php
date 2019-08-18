@@ -49,7 +49,8 @@
 
             <?php 
               //管理者ユーザーの場合、管理機能画面へのリンクを表示
-              if($user_select_all[0]['plan'] == 1){
+                if($user_select_all[0]['plan'] == 1){
+                $_SESSION['Admin'] = $user_select_all[0]['plan']; 
             ?>
             <div class="user_type">
                  <a href="user_info.php"><-管理機能画面-></a>

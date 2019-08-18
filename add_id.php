@@ -13,10 +13,9 @@
         echo $link->connect_error;
         exit();
     } else {
-        $link->set_charset("utf8");
 
         //入力されたe-mailアドレスが登録済みか、無効になっているかチェック
-            $link->set_charset('utf8');
+/*            $link->set_charset('utf8');
             $user_select_sql = $link->prepare( "SELECT * FROM user where email = ? ");
             $input_id = $_POST['id'];
             $user_select_sql->bind_param("s",$input_id);
@@ -24,7 +23,25 @@
             $result = $user_select_sql->get_result();
             $user_select_all = $result->fetch_all(MYSQLI_ASSOC);
 
-            if(count($user_select_all)==0){
+       $user_select_all=user_select( $link,"rege_valid_mail",$_POST['id']);
+
+       if($user_select_all!="0"){
+           $email_check = true;
+       }else{
+           $email_check = false;
+       }
+
+
+            if(count($user_select_all)==0){*/
+
+            $user_select_all=user_select( $link,"rege_mail",$_POST['id']);
+
+            var_dump($user_select_all);
+
+           // exit;
+
+            if($user_select_all=="0"){
+
         //未登録の場合
                 $email_check = true;
                 $add_type    = "insert";

@@ -17,10 +17,11 @@ try {
 //接続
 
 //SESSONによるアクセス制限
-if(isset($_SESSION['user_id'])){
+if(isset($_SESSION['Admin'])){
 }else{
-  header('Location: index.php');
+ header('Location: index.php');
 }
+
 
 $sql ="SELECT * FROM user";
 $stmt = $db -> prepare($sql);
